@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en"><head><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1CQ4D3VQ3L"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1CQ4D3VQ3L');
+  </script>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+
+<title>Crystal Cluster: Entropy Engine</title>
+
+<meta name="description" content="Interactive 3D generative art tool simulating molecular chaos. Customize crystal growth, explosion forces, and cinematic lighting in real-time.">
+<meta name="keywords" content="Three.js, Generative Art, 3D Visualization, Entropy Engine, WebGL, Molecular Simulation, Creative Coding, Interactive Design">
+<meta name="author" content="Chris Pirillo">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0f172a">
+<meta name="application-name" content="Crystal Cluster: Entropy Engine">
+<meta name="apple-mobile-web-app-title" content="Crystal Cluster: Entropy Engine">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+
+<meta property="og:site_name" content="Chris Pirillo's Arcade">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crystal Cluster: Entropy Engine">
+<meta property="og:description" content="Interactive 3D generative art tool simulating molecular chaos. Customize crystal growth, explosion forces, and cinematic lighting in real-time.">
+<meta property="og:url" content="https://arcade.pirillo.com/crystal-cluster.html">
+<meta property="og:image" content="https://arcade.pirillo.com/images/crystal-cluster.png">
+<meta property="og:image:alt" content="Crystal Cluster: Entropy Engine">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-02-26T21:46:48.189Z">
+<meta property="article:author" content="Chris Pirillo">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ChrisPirillo">
+<meta name="twitter:creator" content="@ChrisPirillo">
+<meta name="twitter:title" content="Crystal Cluster: Entropy Engine">
+<meta name="twitter:description" content="Interactive 3D generative art tool simulating molecular chaos. Customize crystal growth, explosion forces, and cinematic lighting in real-time.">
+<meta name="twitter:image" content="https://arcade.pirillo.com/images/crystal-cluster.png">
+<meta name="twitter:domain" content="arcade.pirillo.com">
+<meta name="twitter:url" content="https://arcade.pirillo.com/crystal-cluster.html">
+
+<link rel="canonical" href="https://arcade.pirillo.com/crystal-cluster.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Crystal Cluster: Entropy Engine",
+  "description": "Interactive 3D generative art tool simulating molecular chaos. Customize crystal growth, explosion forces, and cinematic lighting in real-time.",
+  "url": "https://arcade.pirillo.com/crystal-cluster.html",
+  "image": "https://arcade.pirillo.com/images/crystal-cluster.png",
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://arcade.pirillo.com/images/crystal-cluster.png"
+  },
+  "datePublished": "2026-02-26T21:46:48.189Z",
+  "dateModified": "2026-02-26T21:46:48.189Z",
+  "author": {
+    "@type": "Person",
+    "name": "Chris Pirillo",
+    "url": "https://pirillo.com",
+    "sameAs": [
+      "https://x.com/ChrisPirillo",
+      "https://linkedin.com/in/chrispirillo"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Chris Pirillo",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pirillo.com/logo.png"
+    }
+  },
+  "mainEntity": {
+    "@type": "WebApplication",
+    "name": "Crystal Cluster: Entropy Engine",
+    "description": "Interactive 3D generative art tool simulating molecular chaos. Customize crystal growth, explosion forces, and cinematic lighting in real-time.",
+    "image": "https://arcade.pirillo.com/images/crystal-cluster.png",
+    "operatingSystem": "Any",
+    "applicationCategory": "Simulation",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Chris Pirillo",
+      "url": "https://pirillo.com"
+    },
+    "datePublished": "2026-02-26T21:46:48.189Z",
+    "inLanguage": "en-US"
+  }
+}</script>
+
+<meta charset="UTF-8">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap'); :root { --panel-bg: rgba(6, 6, 6, 0.98); --border: rgba(255, 255, 255, 0.08); --accent: #5da9ff; }
+body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Inter', sans-serif; color: white; user-select: none; -webkit-user-select: none; }
+canvas { display: block; width: 100vw; height: 100vh; transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
+.fade-out { opacity: 0; filter: blur(10px); }
+.fade-in { opacity: 1; filter: blur(0); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+.glass { background: var(--panel-bg); backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px); border: 1px solid var(--border); }
+.menu-btn { position: fixed; top: 24px; right: 24px; z-index: 100; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.menu-btn:hover { background: rgba(255,255,255,0.05); transform: scale(1.05); }
+.menu-btn.hidden-state { opacity: 0; pointer-events: none; transform: scale(0.8); }
+.settings-panel { position: fixed; top: 0; right: -440px; width: 440px; height: 100vh; z-index: 90; transition: right 0.6s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; box-shadow: -20px 0 50px rgba(0,0,0,0.5); }
+.settings-panel.open { right: 0; }
+@media (max-width: 640px) { .settings-panel { width: 100%; right: -100%; }
+}
+.panel-header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+.panel-body { flex: 1; overflow-y: auto; padding: 32px; scroll-behavior: smooth; }
+.section-title { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); margin: 40px 0 20px 0; display: flex; align-items: center; gap: 12px; opacity: 0.8; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); }
+.control-group { margin-bottom: 24px; }
+.control-label { display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; color: rgba(255,255,255,0.5); }
+input[type="range"] { width: 100%; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; appearance: none; cursor: pointer; transition: background 0.3s; }
+input[type="range"]::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; background: white; border-radius: 4px; box-shadow: 0 0 20px rgba(255,255,255,0.2); transition: transform 0.2s; }
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+#loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 300; background: #050505; transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.external-link { padding: 1rem; border-radius: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s; display: block; width: 100%; }
+.external-link:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }</style>
+</head>
+<body><h1 style="display: none;">Crystal Cluster: Entropy Engine</h1>
+
+    <div id="loader">
+        <div class="text-[10px] tracking-[0.8em] text-white/40 uppercase mb-4">Initializing Entropy Engine</div>
+        <div class="w-48 h-[1px] bg-white/5 overflow-hidden">
+            <div class="w-full h-full bg-white/40 origin-left animate-[loading_2s_ease-in-out_infinite]"></div>
+        </div>
+    </div>
+
+    <style>@keyframes loading { 0% { transform: translateX(-100%); }
+100% { transform: translateX(100%); }
+}</style>
+
+    <div class="menu-btn glass" id="menuToggle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        </svg>
+    </div>
+
+    <div class="settings-panel glass" id="settingsPanel">
+        <div class="panel-header">
+            <h2 class="font-bold tracking-[0.3em] text-[10px] uppercase text-white/70">Core Interface</h2>
+            <div class="flex items-center gap-4">
+                <button id="infoBtn" class="opacity-30 hover:opacity-100 transition-opacity">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </button>
+                <button id="closeSettings" class="p-2 hover:bg-white/5 rounded-xl transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="panel-body" id="controlsContainer"></div>
+
+        <div class="p-8 border-t border-white/5 grid grid-cols-2 gap-4 bg-white/[0.01]">
+            <button id="randomBtn" class="px-4 py-5 bg-white text-black rounded-2xl font-black text-[10px] uppercase tracking-[0.25em] hover:scale-[1.02] active:scale-[0.98] transition-all">Shatter</button>
+            <button id="export4kBtn" class="px-4 py-5 bg-white/5 border border-white/10 rounded-2xl font-black text-[10px] uppercase tracking-[0.25em] hover:bg-white/10 transition-all">Capture</button>
+            <button id="resetBtn" class="col-span-2 py-2 text-white/20 hover:text-white/50 text-[9px] uppercase tracking-[0.5em] transition-colors">Recall Defaults</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay fixed inset-0 bg-black/95 hidden items-center justify-center z-[200] backdrop-blur-xl" id="infoModal">
+        <div class="modal-content glass p-12 rounded-[40px] w-[90%] max-w-[480px] text-center border-white/10">
+            <h2 class="text-2xl font-bold tracking-tighter mb-2 italic">Entropy Engine</h2>
+            <p class="text-[10px] text-white/40 mb-10 leading-relaxed uppercase tracking-[0.3em]">
+                Molecular Chaos Simulation v2.0<br><br>
+                Interaction Architecture:<br>
+                Click Workspace: Trigger Re-Shatter<br>
+                Shift + Drag: Manual Re-Orbit
+            </p>
+            <div class="grid gap-3">
+                <a href="https://arcade.pirillo.com/" target="_blank" class="external-link">More of My Apps</a>
+                <a href="https://chris.pirillo.com/" target="_blank" class="external-link">Follow Chris Pirillo</a>
+                <a href="https://ctrlaltcreate.live/" target="_blank" class="external-link">Learn How to Make Apps</a>
+                <a href="https://www.paypal.com/donate/?hosted_button_id=UMWCDWGVXVHZU" target="_blank" class="external-link font-bold text-yellow-500 border-yellow-500/20 bg-yellow-500/5">Donate to Me Here</a>
+                <a href="https://patreon.com/ChrisPirillo" target="_blank" class="external-link font-bold text-blue-400 border-blue-400/20 bg-blue-400/5">Support My Patreon</a>
+            </div>
+            <button id="closeInfo" class="mt-10 text-[10px] opacity-30 hover:opacity-100 uppercase tracking-[0.6em] transition-opacity">Return to Sim</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        const PALETTES = [
+            { name: "Void", color: "#111111", secondary: "#333333", glow: "#ffffff" },
+            { name: "Supernova", color: "#ff4d00", secondary: "#ffcc00", glow: "#ffaa00" },
+            { name: "Glacier", color: "#00f2ff", secondary: "#ffffff", glow: "#7df9ff" },
+            { name: "Cyber", color: "#bc00ff", secondary: "#00ff95", glow: "#ff00e5" },
+            { name: "Blood", color: "#660000", secondary: "#220000", glow: "#ff0000" }
+        ];
+
+        const DEFAULT_STATE = {
+            // Entropy Engine
+            chaosIntensity: 0.1,
+            explosionForce: 0.8,
+            fractureScale: 0.4,
+            
+            // Structure
+            crystalCount: 450,
+            clusterRadius: 2.2,
+            crystalMinSize: 0.05,
+            crystalMaxSize: 0.8,
+            growthFactor: 2.5,
+            dispersion: 0.3,
+            symmetry: 0.9,
+
+            // Physics
+            roughness: 0.1,
+            metalness: 0.4,
+            transmission: 0.9,
+            ior: 1.6,
+            thickness: 3.5,
+            opacity: 1.0,
+            clearcoat: 1.0,
+            reflectivity: 0.8,
+
+            // Atmosphere
+            ambientIntensity: 0.2,
+            mainLightIntensity: 4.0,
+            rimLightIntensity: 2.5,
+            lightPosX: 5.0,
+            lightPosY: 8.0,
+            lightPosZ: 5.0,
+            sparkleIntensity: 2.0,
+            sparkleCount: 16,
+            sparkleSpeed: 1.5,
+            sparkleRadius: 4.5,
+            bloomThreshold: 0.85,
+            bloomStrength: 1.5,
+            bloomRadius: 0.4,
+
+            // Chromatic
+            crystalColor: "#ffffff",
+            secondaryColor: "#888888",
+            glowColor: "#ffffff",
+            bgColor: "#000000",
+            fogDensity: 0.04,
+
+            // Kinematics
+            rotationX: 0.15,
+            rotationY: 0.5,
+            rotationZ: 0.1,
+            floatSpeed: 0.4,
+            floatAmplitude: 0.15,
+            pulseSpeed: 1.2,
+            pulseIntensity: 0.2
+        };
+
+        let state = { ...DEFAULT_STATE };
+        let isTransitioning = false;
+        let lastTap = 0;
+        let sparkleLights = [];
+        let mouseDownPos = { x: 0, y: 0 };
+
+        // --- Core Scene Setup ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(0, 0, 10);
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true, 
+            alpha: true, 
+            preserveDrawingBuffer: true,
+            powerPreference: "high-performance"
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        const composer = new EffectComposer(renderer);
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+        composer.addPass(new RenderPass(scene, camera));
+        composer.addPass(bloomPass);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, state.ambientIntensity);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, state.mainLightIntensity);
+        mainLight.position.set(state.lightPosX, state.lightPosY, state.lightPosZ);
+        scene.add(mainLight);
+
+        const rimLight = new THREE.PointLight(0xffffff, state.rimLightIntensity, 30);
+        rimLight.position.set(-8, -8, -8);
+        scene.add(rimLight);
+
+        let clusterGroup = null;
+
+        async function generateCluster(isInitial = false) {
+            if (isTransitioning) return;
+            
+            if (!isInitial) {
+                isTransitioning = true;
+                renderer.domElement.classList.add('fade-out');
+                await new Promise(r => setTimeout(r, 800));
+            }
+
+            if (clusterGroup) {
+                scene.remove(clusterGroup);
+                clusterGroup.traverse(c => {
+                    if (c.geometry) c.geometry.dispose();
+                    if (c.material) {
+                        if (Array.isArray(c.material)) c.material.forEach(m => m.dispose());
+                        else c.material.dispose();
+                    }
+                });
+            }
+
+            // Sync Environment
+            scene.background = new THREE.Color(state.bgColor);
+            scene.fog = new THREE.FogExp2(state.bgColor, state.fogDensity);
+            ambientLight.intensity = state.ambientIntensity;
+            mainLight.intensity = state.mainLightIntensity;
+            mainLight.position.set(state.lightPosX, state.lightPosY, state.lightPosZ);
+            rimLight.intensity = state.rimLightIntensity;
+            bloomPass.threshold = state.bloomThreshold;
+            bloomPass.strength = state.bloomStrength;
+            bloomPass.radius = state.bloomRadius;
+            controls.autoRotateSpeed = state.rotationY;
+
+            // Lights
+            sparkleLights.forEach(l => scene.remove(l));
+            sparkleLights = [];
+            const actualSparkleCount = Math.min(state.sparkleCount, 40);
+            for(let i=0; i < actualSparkleCount; i++) {
+                const l = new THREE.PointLight(state.glowColor, state.sparkleIntensity, 6);
+                scene.add(l);
+                sparkleLights.push(l);
+            }
+
+            const group = new THREE.Group();
+            
+            const mat1 = new THREE.MeshPhysicalMaterial({ 
+                color: new THREE.Color(state.crystalColor), 
+                metalness: state.metalness, 
+                roughness: state.roughness, 
+                transmission: state.transmission, 
+                thickness: state.thickness, 
+                ior: state.ior, 
+                opacity: state.opacity, 
+                transparent: state.opacity < 1.0, 
+                clearcoat: state.clearcoat,
+                reflectivity: state.reflectivity, 
+                flatShading: true 
+            });
+
+            const mat2 = new THREE.MeshStandardMaterial({ 
+                color: new THREE.Color(state.secondaryColor), 
+                metalness: state.metalness + 0.2, 
+                roughness: state.roughness * 1.5, 
+                opacity: state.opacity, 
+                transparent: state.opacity < 1.0, 
+                flatShading: true 
+            });
+
+            const geos = [
+                new THREE.CylinderGeometry(0.01, 0.2, 1, 6, 1).translate(0, 0.5, 0),
+                new THREE.IcosahedronGeometry(0.5, 0),
+                new THREE.OctahedronGeometry(0.5, 0)
+            ];
+
+            const dummy = new THREE.Object3D();
+            const countPerMesh = Math.ceil(state.crystalCount / (geos.length * 2));
+
+            geos.forEach((geo) => {
+                [mat1, mat2].forEach((mat) => {
+                    const iMesh = new THREE.InstancedMesh(geo, mat, countPerMesh);
+                    for(let i=0; i < countPerMesh; i++) {
+                        // Entropy Engine Math
+                        const phi = Math.acos(-1 + (2 * i) / countPerMesh);
+                        const theta = Math.sqrt(countPerMesh * Math.PI) * phi;
+                        
+                        // Apply Chaos jitter
+                        const chaosX = (Math.random() - 0.5) * state.chaosIntensity * 5;
+                        const chaosY = (Math.random() - 0.5) * state.chaosIntensity * 5;
+                        const chaosZ = (Math.random() - 0.5) * state.chaosIntensity * 5;
+
+                        // Explosion Force stretches the base radius
+                        const baseR = state.clusterRadius * (0.3 + Math.random() * 0.7);
+                        const force = (1 + Math.random() * state.explosionForce * 4);
+                        const r = baseR * force;
+                        
+                        dummy.position.set(
+                            r * Math.cos(theta) * Math.sin(phi) + chaosX,
+                            r * Math.sin(theta) * Math.sin(phi) + chaosY,
+                            r * Math.cos(phi) + chaosZ
+                        );
+                        
+                        // Orientation: Symmetry blend
+                        dummy.lookAt(0,0,0);
+                        const sym = (1.0 - state.symmetry) * 4.0;
+                        const noise = state.chaosIntensity * 10.0;
+                        dummy.rotateX(Math.PI/2 + (Math.random()-0.5) * (sym + noise));
+                        dummy.rotateY(Math.random() * Math.PI * (1 + state.chaosIntensity));
+                        
+                        // Scale
+                        const sBase = state.crystalMinSize + Math.random() * (state.crystalMaxSize - state.crystalMinSize);
+                        const sVar = 1.0 + (Math.random() - 0.5) * state.chaosIntensity;
+                        dummy.scale.set(sBase * sVar, sBase * state.growthFactor * sVar, sBase * sVar);
+                        
+                        dummy.updateMatrix();
+                        iMesh.setMatrixAt(i, dummy.matrix);
+                    }
+                    group.add(iMesh);
+                });
+            });
+
+            clusterGroup = group;
+            scene.add(group);
+
+            if (!isInitial) {
+                renderer.domElement.classList.remove('fade-out');
+                renderer.domElement.classList.add('fade-in');
+                await new Promise(r => setTimeout(r, 800));
+                renderer.domElement.classList.remove('fade-in');
+                isTransitioning = false;
+            } else {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.style.opacity = 0;
+                    setTimeout(() => loader.remove(), 1500);
+                }
+            }
+        }
+
+        // --- UI System ---
+        function createCategory(name) {
+            const title = document.createElement('div');
+            title.className = 'section-title';
+            title.innerText = name;
+            document.getElementById('controlsContainer').appendChild(title);
+        }
+
+        function createControl(label, key, min, max, step = 0.01, isColor = false) {
+            const group = document.createElement('div');
+            group.className = 'control-group';
+            group.innerHTML = `<div class="control-label"><span>${label}</span><span id="val-${key}">${isColor ? '' : state[key]}</span></div>`;
+            
+            const input = document.createElement('input');
+            input.type = isColor ? 'color' : 'range';
+            if(!isColor) { input.min = min; input.max = max; input.step = step; }
+            input.className = isColor ? 'w-full h-10 bg-transparent border-0 cursor-pointer rounded-xl' : '';
+            input.value = state[key];
+            
+            input.oninput = (e) => {
+                state[key] = isColor ? e.target.value : parseFloat(e.target.value);
+                const disp = document.getElementById(`val-${key}`);
+                if (disp && !isColor) disp.innerText = state[key];
+                
+                // Real-time updates for non-generative keys
+                if (key === 'bloomStrength') bloomPass.strength = state.bloomStrength;
+                if (key === 'bloomRadius') bloomPass.radius = state.bloomRadius;
+                if (key === 'bloomThreshold') bloomPass.threshold = state.bloomThreshold;
+                if (key === 'mainLightIntensity') mainLight.intensity = state.mainLightIntensity;
+                if (key === 'rimLightIntensity') rimLight.intensity = state.rimLightIntensity;
+                if (key === 'ambientIntensity') ambientLight.intensity = state.ambientIntensity;
+                if (key.startsWith('lightPos')) mainLight.position.set(state.lightPosX, state.lightPosY, state.lightPosZ);
+                if (key === 'bgColor') {
+                    scene.background.set(state.bgColor);
+                    scene.fog.color.set(state.bgColor);
+                }
+                if (key === 'fogDensity') scene.fog.density = state.fogDensity;
+
+                // Generative triggers
+                const regen = ['chaosIntensity', 'explosionForce', 'crystalCount', 'clusterRadius', 'crystalMinSize', 'crystalMaxSize', 'growthFactor', 'dispersion', 'symmetry', 'roughness', 'metalness', 'transmission', 'ior', 'thickness', 'opacity', 'clearcoat', 'reflectivity', 'crystalColor', 'secondaryColor', 'sparkleCount'];
+                if (regen.includes(key) && !isTransitioning) generateCluster(true);
+            };
+            
+            group.appendChild(input);
+            document.getElementById('controlsContainer').appendChild(group);
+        }
+
+        function initControls() {
+            const container = document.getElementById('controlsContainer');
+            container.innerHTML = '';
+            
+            createCategory("Entropy Engine");
+            createControl("Chaos Intensity", "chaosIntensity", 0, 1);
+            createControl("Explosion Force", "explosionForce", 0, 5);
+            createControl("Alignment", "symmetry", 0, 1);
+
+            createCategory("Lattice Structure");
+            createControl("Unit Count", "crystalCount", 20, 3000, 1);
+            createControl("Nucleus Scale", "clusterRadius", 0.5, 10);
+            createControl("Min Scale", "crystalMinSize", 0.01, 1);
+            createControl("Max Scale", "crystalMaxSize", 0.1, 5);
+            createControl("Extension", "growthFactor", 0.1, 15);
+
+            createCategory("Optics & Physics");
+            createControl("Surface Detail", "roughness", 0, 1);
+            createControl("Metallic", "metalness", 0, 1);
+            createControl("Transparency", "transmission", 0, 1);
+            createControl("Sub-Depth", "thickness", 0, 20);
+            createControl("Bloom Power", "bloomStrength", 0, 5);
+
+            createCategory("Atmosphere");
+            createControl("Source Power", "mainLightIntensity", 0, 20);
+            createControl("Rim Power", "rimLightIntensity", 0, 15);
+            createControl("Sparkle Count", "sparkleCount", 0, 100, 1);
+            createControl("Mist Density", "fogDensity", 0, 0.2);
+
+            createCategory("Chromatics");
+            createControl("Primary", "crystalColor", 0,0,0, true);
+            createControl("Secondary", "secondaryColor", 0,0,0, true);
+            createControl("Emission", "glowColor", 0,0,0, true);
+            createControl("Void Color", "bgColor", 0,0,0, true);
+
+            createCategory("Kinematics");
+            createControl("Orbital Speed", "rotationY", 0, 10);
+            createControl("Float Range", "floatAmplitude", 0, 2);
+            createControl("Pulse Hz", "pulseSpeed", 0, 10);
+        }
+
+        function randomize() {
+            const pal = PALETTES[Math.floor(Math.random() * PALETTES.length)];
+            state.crystalColor = pal.color;
+            state.secondaryColor = pal.secondary;
+            state.glowColor = pal.glow;
+            
+            state.chaosIntensity = Math.random() * 0.4;
+            state.explosionForce = Math.random() * 2;
+            state.clusterRadius = 1.0 + Math.random() * 4;
+            state.crystalCount = 300 + Math.floor(Math.random() * 800);
+            state.growthFactor = 1.0 + Math.random() * 5;
+            
+            initControls();
+            generateCluster();
+        }
+
+        // --- Event Listeners ---
+        const menuToggle = document.getElementById('menuToggle');
+        const settings = document.getElementById('settingsPanel');
+        const infoBtn = document.getElementById('infoBtn');
+        const infoModal = document.getElementById('infoModal');
+
+        const toggleMenu = (open) => {
+            if (open) {
+                settings.classList.add('open');
+                menuToggle.classList.add('hidden-state');
+            } else {
+                settings.classList.remove('open');
+                menuToggle.classList.remove('hidden-state');
+            }
+        };
+
+        menuToggle.onclick = (e) => { e.stopPropagation(); toggleMenu(true); };
+        document.getElementById('closeSettings').onclick = () => toggleMenu(false);
+        infoBtn.onclick = () => infoModal.style.display = 'flex';
+        document.getElementById('closeInfo').onclick = () => infoModal.style.display = 'none';
+
+        // Keyboard support
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (infoModal.style.display === 'flex') {
+                    infoModal.style.display = 'none';
+                } else if (settings.classList.contains('open')) {
+                    toggleMenu(false);
+                }
+            }
+        });
+
+        // Track pointer position to differentiate click from drag
+        window.addEventListener('pointerdown', (e) => {
+            mouseDownPos.x = e.clientX;
+            mouseDownPos.y = e.clientY;
+        });
+
+        window.onclick = (e) => {
+            if (settings.classList.contains('open')) {
+                if (!settings.contains(e.target) && !menuToggle.contains(e.target)) toggleMenu(false);
+                return;
+            }
+            if (infoModal.style.display === 'flex') {
+                if (!infoModal.querySelector('.modal-content').contains(e.target)) infoModal.style.display = 'none';
+                return;
+            }
+
+            // Calculate distance moved. If > 5px, it's a drag, not a click.
+            const dist = Math.hypot(e.clientX - mouseDownPos.x, e.clientY - mouseDownPos.y);
+            if (dist > 5) return;
+
+            if (!('ontouchstart' in window) && e.target === renderer.domElement) randomize();
+        };
+
+        window.addEventListener('touchstart', (e) => {
+            if (settings.classList.contains('open') || infoModal.style.display === 'flex') return;
+            const now = Date.now();
+            if (now - lastTap < 300) randomize();
+            lastTap = now;
+        }, { passive: true });
+
+        document.getElementById('export4kBtn').onclick = async () => {
+            const w = 3840, h = 2160, aspect = camera.aspect;
+            renderer.setSize(w, h);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            composer.render();
+            const link = document.createElement('a');
+            link.download = `Entropy_Engine_${Date.now()}.png`;
+            link.href = renderer.domElement.toDataURL('image/png');
+            link.click();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = aspect;
+            camera.updateProjectionMatrix();
+        };
+
+        document.getElementById('resetBtn').onclick = () => { state = { ...DEFAULT_STATE }; initControls(); generateCluster(); };
+        document.getElementById('randomBtn').onclick = randomize;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            const time = performance.now() * 0.001;
+            
+            if (clusterGroup) {
+                clusterGroup.position.y = Math.sin(time * state.floatSpeed) * state.floatAmplitude;
+                clusterGroup.rotation.x += state.rotationX * 0.002;
+                clusterGroup.rotation.z += state.rotationZ * 0.002;
+            }
+
+            const pulse = 1.0 + Math.sin(time * state.pulseSpeed) * state.pulseIntensity;
+            sparkleLights.forEach((l, i) => {
+                const r = state.sparkleRadius;
+                const speed = state.sparkleSpeed * 0.4;
+                const offset = (i / sparkleLights.length) * Math.PI * 2;
+                l.position.set(
+                    Math.cos(time * speed + offset) * r, 
+                    Math.sin(time * speed * 0.7 + offset) * r, 
+                    Math.cos(time * speed * 1.1 + offset) * r
+                );
+                l.intensity = state.sparkleIntensity * pulse;
+            });
+
+            composer.render();
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        initControls();
+        generateCluster(true);
+        animate();
+    </script>
+
+</body></html>
